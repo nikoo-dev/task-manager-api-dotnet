@@ -17,9 +17,14 @@ namespace TaskManagerAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<TaskItem>>> GetAll()
+        public async Task<ActionResult<List<TaskItem>>> GetAll([FromQuery] bool? isCompleted)
         {
-            return Ok(await _context.Tasks.ToListAsync());
+            var tasks = _context.Tasks.AsQueryable();
+
+            if (isCompleted.HasValue)
+                tasks = tasks.Where(t => t.IsCompleted == isCompleted.Value);
+  
+            return Ok(await tasks.ToListAsync());
         }
 
         [HttpGet("{id}")]
