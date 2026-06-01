@@ -1,71 +1,74 @@
 # Task Manager API
 
-A RESTful API built with **ASP.NET Core 8** and **C#** for managing tasks.
+A RESTful API built with **ASP.NET Core 8** and **C#** for managing tasks — featuring full CRUD, SQLite persistence, input validation, status filtering, and interactive Swagger UI.
 
 ## Tech Stack
-- ASP.NET Core 8
-- C#
-- Entity Framework Core
-- SQLite
-- Swagger / Swashbuckle
+
+| | |
+|---|---|
+| Framework | ASP.NET Core 8 |
+| Language | C# |
+| ORM | Entity Framework Core |
+| Database | SQLite |
+| Docs | Swagger / Swashbuckle |
 
 ## Features
-- ✅ Full CRUD operations (Create, Read, Update, Delete)
-- ✅ Real database persistence with SQLite
-- ✅ Input validation (required fields, max length)
-- ✅ Filter tasks by completion status
-- ✅ Swagger UI for interactive API testing
 
-## Endpoints
+- Full CRUD — Create, Read, Update, Delete tasks
+- Real database persistence with EF Core + SQLite (auto-migration on startup)
+- Input validation — required fields, max length enforced
+- Filter tasks by completion status (`?isCompleted=true/false`)
+- Interactive Swagger UI for testing all endpoints
 
-| Method | URL | Description |
-|--------|-----|-------------|
-| GET | /api/tasks | Get all tasks (supports ?isCompleted=true/false) |
-| GET | /api/tasks/{id} | Get task by ID |
-| POST | /api/tasks | Create new task |
-| PUT | /api/tasks/{id} | Update task |
-| DELETE | /api/tasks/{id} | Delete task |
+## API Endpoints
 
-## How to Run
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/tasks` | Get all tasks (supports `?isCompleted=true/false`) |
+| GET | `/api/tasks/{id}` | Get task by ID |
+| POST | `/api/tasks` | Create a new task |
+| PUT | `/api/tasks/{id}` | Update a task |
+| DELETE | `/api/tasks/{id}` | Delete a task |
 
-1. Clone the repository
+## Getting Started
+
 ```bash
-git clone https://github.com/5nikoo-1/task-manager-api-dotnet.git
-```
+# Clone the repository
+git clone https://github.com/nikoo-dev/task-manager-api-dotnet.git
 
-2. Navigate to the project
-```bash
+# Navigate to the project
 cd task-manager-api-dotnet/TaskManagerAPI
-```
 
-3. Run the project
-```bash
+# Run
 dotnet run
 ```
 
-4. Open Swagger UI
-```
-http://localhost:5113/swagger
-```
+Open Swagger UI at: `http://localhost:5113/swagger`
 
 ## Example Request
 
-Create a new task:
 ```json
+POST /api/tasks
 {
-  "title": "Learn C#",
-  "description": "Build a REST API with ASP.NET Core",
+  "title": "Learn ASP.NET Core",
+  "description": "Build a REST API with EF Core and SQLite",
   "isCompleted": false
 }
 ```
 
 ## Validation Rules
-- Title is **required**
-- Title max length: **100 characters**
-- Description max length: **500 characters**
 
-## Future Improvements
-- Add user authentication with JWT
-- Add task priority (Low / Medium / High)
-- Deploy to Azure
-- Add unit tests with xUnit
+- `title` — required, max 100 characters
+- `description` — optional, max 500 characters
+
+## Roadmap
+
+- [ ] JWT authentication
+- [ ] Task priority levels (Low / Medium / High)
+- [ ] xUnit unit tests
+- [ ] Azure deployment
+
+## Author
+
+**Niko** · [github.com/nikoo-dev](https://github.com/nikoo-dev)  
+Available for freelance .NET backend work — [Fiverr](https://www.fiverr.com/niko23227)
